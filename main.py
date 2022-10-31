@@ -82,11 +82,33 @@ def print_hi(name):
     print(type(ssset))
     print(ssset)
 
+    print("迭代器###################")
+    class countDown:
+        def __init__(self,step):
+            self.step=step
+        def __next__(self):
+            """RETURN The Next Element."""
+            if self.step <= 0:
+                raise StopIteration
+            self.step -= 1
+            return self.step
+        def __iter__(self):
+            """RETURN THE iterator itself"""
+            return self
+    for element in countDown(4):
+        print(element)
+
     print("================================")
     print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
     print(gc.get_threshold())
     print(gc.get_count())
     print(gc.collect())
+
+def otherFunc():
+    # for element in print_hcountDown(4):
+    #     print(element)
+    print()
+
 
 
 # Press the green button in the gutter to run the script.
