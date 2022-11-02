@@ -3,6 +3,7 @@
 # Press ⌃R to execute it or replace it with your code.
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 import gc
+import time
 from collections import OrderedDict
 
 
@@ -97,6 +98,36 @@ def print_hi(name):
             return self
     for element in countDown(4):
         print(element)
+
+    print("yield语句###################")
+    def fibonacci():
+        a, b = 0, 1
+        while True:
+            yield b
+            a,b = b, a+b
+    fib = fibonacci()
+    for i in range(20):
+        print(next(fib))
+    print("yield语句###################")
+    def power(values):
+        for value in values:
+            print('powering %s' % value)
+            yield value
+
+    def adder(values):
+        for value in values:
+            print('adding to %s' % value)
+            if value % 2 ==0:
+                yield value + 3
+            else:
+                yield value + 2
+    elements= [1, 4, 7, 9, 12, 19]
+    results = adder(power(elements))
+    for i in range(6):
+        print(next(results))
+
+
+
 
     print("================================")
     print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
