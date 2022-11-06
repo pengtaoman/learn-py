@@ -129,11 +129,14 @@ def print_hi(name):
 
 
 
+
     print("================================")
     print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
     print(gc.get_threshold())
     print(gc.get_count())
     print(gc.collect())
+
+
 
 def otherFunc():
     # for element in print_hcountDown(4):

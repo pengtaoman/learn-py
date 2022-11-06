@@ -6,6 +6,7 @@ def consumer():
 
     while True:
         n = yield r
+        print("-------------------" , n)
         if not n:
             return
 
@@ -14,9 +15,9 @@ def consumer():
         r = '200 OK'
 
 def produce(c):
-    c.__next__()
-    # next(c)
-    print('########################################')
+    # c.__next__()
+    nn = next(c)
+    print('######################################## nnn ::: ' + str(nn))
     print(type(c))
     print('########################################')
     n = 0
