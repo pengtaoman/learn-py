@@ -79,6 +79,65 @@ def func_with_docs():
     """这是真正的有用的文档注释"""
 
 
+
+print("############################## 装饰器模式 参数检查 ############################################")
+rpc_info={
+}
+#????? in_()是什么用法
+def xmlrpc(in_=(), out=(type(None),)):
+    print("--------- xmlrpc 已经开始被调用, 被声明一次就被调用一次 ------------")
+    print("--------- 参数1 in_=()::: %s" % type(in_))
+    print("--------- 参数2 iout::: %s" % type(out))
+    def _xmlrpc(function):
+        print("--------- _xmlrpc 被调用 ::::: %s " % function.__name__)
+        #注册签名
+        func_name=function.__name__
+        rpc_info[func_name]=(in_, out)
+        def _check_tpyes(elements, types):
+            print("--------- 调用 _check_tpyes :::")
+            """用来检查类型的自函数"""
+            if len(elements) != len(types):
+                raise TypeError('参数个数错误')
+            typed= enumerate(zip(elements, types))
+            for index, couple, in typed:
+                arg, of_the_righbt_type=couple
+                if isinstance(arg, of_the_righbt_type):
+                    continue
+                raise TypeError('arg #%d shoud be %s' % (index, of_the_righbt_type))
+        #包装过的函数
+        def __xmlrpc(*args, **kwargs): #没有允许的关键词
+            print("--------- 装饰器应该是按照返回结构确定调用链的，不论套多少层，层层返回则层层调用")
+            print("--------- 调用 __xmlrpc ::: ")
+            print(args)
+            #检查输入内容
+            checkeable_args = args[1:] #去掉self
+            _check_tpyes(checkeable_args, in_)
+            #运行函数
+            res=function(*args)
+            #检查输出的内容
+            if not type(res) in (tuple, list):
+                checkeable_res=(res,)
+            else :
+                checkeable_res=res
+            _check_tpyes(checkeable_res, out)
+            #函数及其类型检查成功
+            return res
+        return __xmlrpc
+    return _xmlrpc
+
+class RPCView:
+    @xmlrpc((int, int))
+    def meth1(self, int1, int2):
+        print("收到 %d 和 %d" % (int1, int2))
+
+    @xmlrpc((str,), (int,))
+    def meth2(self, phrase):
+        print("收到 %s " % phrase)
+        return 12
+
+
+
+
 if __name__ == '__main__':
     ww = WithoutDecorators()
     ww.some_class_method("alilili",55)
@@ -99,3 +158,9 @@ if __name__ == '__main__':
     print("#### func_with_docs的文档")
     print(func_with_docs.__name__)
     print(func_with_docs.__doc__)
+
+    print("#############     参数检查        ####################")
+    print(rpc_info)
+
+    my = RPCView()
+    my.meth1(1, 2)
