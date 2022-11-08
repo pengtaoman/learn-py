@@ -15,20 +15,20 @@ def mydecorator1():
             for _ in range(3):
                 # result = function(*args, **kwargs)
                 print("MMMMMMMMMKKKKKMKMKMKMKMKMK")
-            def _sss002():
+            def ppppp():
                 print("121212211212121212121212")
-            return _sss002
+            return ppppp()
 
         def sss1():
             for _ in range(3):
                 # result = function(*args, **kwargs)
                 print("*&^%&*^*&^*&^*&^*&^*&^*&^*&^&*^")
 
-            def sss001():
+            def ttttt():
                 for _ in range(3):
                     # result = function(*args, **kwargs)
                     print("798797979797979797979")
-            return sss001
+            return ttttt
         return sss
     return _mydecorator1
 
@@ -39,6 +39,6 @@ def beDoced1():
 
 if __name__ == '__main__':
     # beDoced()
-    # beDoced1()
+    beDoced1()
 
     mm = mydecorator1()
