@@ -15,7 +15,8 @@ def print_hi(name):
     print({s})
 
     print("列表推导###################")
-    arr01 = [i for i in range(10) if i % 2 == 0]
+    arr01 = [i for i in range(10) ]
+    # arr02 = [i: i*2 for i in range(10)]
     print(arr01)
 
     print("枚举###################")
