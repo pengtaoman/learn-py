@@ -1,6 +1,25 @@
 from collections import UserDict
 from dataclasses import dataclass
 
+from collections import UserList
+
+
+class Folder(UserList):
+    def __init__(self, name):
+        print("#"*80 + "这是一段好代码！！！！" + name)
+        self.name = name
+        self.data = []
+
+    def dir(self, nesting=0):
+        offset = "--" * nesting
+        print('%s%s/' % (offset, self.name))
+        for element in self:
+            if hasattr(element, 'dir'):
+                element.dir(nesting + 1)
+            else:
+                print("%s--%s" % (offset, element))
+
+
 
 class DistinctError(ValueError):
     """Raised when duplicate value is added to a distinctdict."""
@@ -79,3 +98,22 @@ if __name__ == "__main__":
     print('*' * 40)
     print(Vectordataclass(2, 3).__add__(FrozenVector(33, 66)))
     print(Vector(5, 3))
+
+    print('*'*60+"   Folder")
+    tree = Folder('project')
+    src = Folder('src')
+    java = Folder('java')
+    sh = Folder('shell')
+    sh.append("build.sh")
+    resources = Folder('resources')
+    tree.append('README.md')
+    tree.append(sh)
+    # tree.dir()
+    src.append(java)
+    java.append("main.java")
+    src.append('script.py')
+    tree.append(src)
+    resources.append("application.yml")
+    src.append(resources)
+    tree.dir()
+    print()
