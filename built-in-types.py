@@ -95,6 +95,11 @@ class FrozenVector:
 
 
 if __name__ == "__main__":
+    my = distinctdict()
+    my['key'] = 'value'
+    # my['other_key'] = 'value'
+    my['other_key'] = 'value2'
+    print(my)
     print('*' * 40)
     print(Vectordataclass(2, 3).__add__(FrozenVector(33, 66)))
     print(Vector(5, 3))
