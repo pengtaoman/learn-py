@@ -69,6 +69,8 @@ class Base2(CommonBase):
 class MyClass(Base1, Base2):
     pass
 
+
+
 if __name__ == "__main__":
     print("Ordinary pizza recomendation:", Pizza.recommend())
     print("Viking pizza recomendation:", VikingPizza.recommend())
@@ -84,6 +86,7 @@ if __name__ == "__main__":
     c = C()
     print(C.__mro__)
     print(dir(c))
+    print("#"*20 + " 前缀__限定私有访问，但是实际编码只用_作为约定，代表私有")
     print(c.__name)
     print('''
     In Python, the initialization methods (that is, the __init__() methods) of base classes are not implicitly
