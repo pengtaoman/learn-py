@@ -54,9 +54,9 @@ def context_illustration11():
 
 
 if __name__ == '__main__':
-    # with ContextIllustration():
-    #     # print("上下文")
-    #     raise RuntimeError("抛出异常 'with'")
+    with ContextIllustration():
+        # print("上下文")
+        raise RuntimeError("抛出异常 'with'")
 
 
     with context_illustration11():
