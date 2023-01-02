@@ -115,16 +115,23 @@ def print_hi(name):
             print('powering %s' % value)
             yield value
 
+    def doodad(value, ad):
+        print("---------------doodad---------------")
+        return value + ad
+
     def adder(values):
         for value in values:
             print('adding to %s' % value)
             if value % 2 ==0:
-                yield value + 3
+                # yield value + 3
+                yield doodad(value, 3)
             else:
-                yield value + 2
+                yield doodad(value, 2)
+
     elements= [1, 4, 7, 9, 12, 19]
     results = adder(power(elements))
     for i in range(6):
+        print("！！！！！！！！！！！！！！！！！！！！！！！")
         print(next(results))
 
 
