@@ -31,11 +31,7 @@ class YieldCallback:
         if dic:
             next = dic['inx']
         print('###########next:  %d', next)
-        if next < 3:
-           yield self.dopa(self.attrs, {"inx": next + 1})
-        else:
-            return
-
+        yield self.dopa(self.attrs, {"inx": next + 1})
 
 if __name__ == "__main__":
     yy = YieldCallback()
@@ -50,10 +46,23 @@ if __name__ == "__main__":
     print(next(dpp))
     print(next(dpp))
     print(next(dpp))
-    print(next(dpp))
+    # print(next(dpp))
 
-    print(next(dpp))
-    print(next(dpp))
+    dppp = next(dpp)
+    print(next(dppp))
+    print(next(dppp))
+    print(next(dppp))
+    print(next(dppp))
+    # print(next(dppp))
+
+    dpppaaaa = next(dppp)
+    print(next(dpppaaaa))
+    print(next(dpppaaaa))
+    print(next(dpppaaaa))
+    print(next(dpppaaaa))
+
+    # print(next(dpp))
+    # print(next(dpp))
 
     # print(next(next(dp)))
     # print(next(dp))
